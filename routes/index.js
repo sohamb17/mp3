@@ -1,6 +1,10 @@
-/*
- * Connect all of your endpoints together here.
- */
+var h = require('../utils/helpers');
+
 module.exports = function (app, router) {
-    app.use('/api', require('./home.js')(router));
+    require('./home.js')(router);
+    require('./users.js')(router);
+    require('./tasks.js')(router);
+    app.use('/api', router);
+    app.use(h.notFound);
+    app.use(h.errorHandler);
 };

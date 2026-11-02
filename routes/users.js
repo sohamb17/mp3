@@ -103,7 +103,7 @@ module.exports = function (router) {
             if (!user) throw new h.HttpError(404, 'User not found');
             await Task.updateMany({ assignedUser: String(user._id) }, { assignedUser: '', assignedUserName: 'unassigned' });
             await user.deleteOne();
-            h.send(res, 200, 'User deleted', {});
+            res.status(204).end();
         });
 
     return router;

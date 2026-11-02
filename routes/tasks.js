@@ -117,7 +117,7 @@ module.exports = function (router) {
                 await User.updateOne({ _id: task.assignedUser }, { $pull: { pendingTasks: String(task._id) } });
             }
             await task.deleteOne();
-            h.send(res, 200, 'Task deleted', {});
+            res.status(204).end();
         });
 
     return router;
